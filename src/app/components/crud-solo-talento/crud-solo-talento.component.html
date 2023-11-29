@@ -1,0 +1,83 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="titulo">Tarjeta</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col lg-6">
+            <div class="card body">
+                <h5 class="titulo">Agregar</h5>
+                <form [formGroup]="form" (ngSubmit)="agregar()">
+                    <div class="input-group input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fas fa-user"
+                            [class.green-icon]="this.form.get('titulo')?.valid"
+                            [class.red-icon]="this.form.get('titulo')?.invalid && this.form.get('titulo')?.touched"></i>
+                        </span>
+                        <input formControlName="titulo" type="text" class="form-control" placeholder="Titular">
+                      </div>
+                      <div class="input-group input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fas fa-credit-card"
+                            [class.green-icon]="this.form.get('numero')?.valid"
+                            [class.red-icon]="this.form.get('numero')?.invalid && this.form.get('numero')?.touched"></i>
+                        </span>
+                        <input formControlName="numero" maxlength="16" type="text" class="form-control" placeholder="Numero">
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-7">
+                        <div class="input-group input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-calendar-alt"
+                                [class.green-icon]="this.form.get('fecha')?.valid"
+                            [class.red-icon]="this.form.get('fecha')?.invalid && this.form.get('fecha')?.touched"></i>
+                            </span>
+                            <input formControlName="fecha" maxlength="5" type="text" class="form-control" placeholder="MM/YY">
+                          </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="input-group input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="fas fa-key"
+                                    [class.green-icon]="this.form.get('cvv')?.valid"
+                            [class.red-icon]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"></i>
+                                </span>
+                                <input formControlName="cvv" maxlength="3" type="password" class="form-control" placeholder="CVV">
+                              </div>
+                            </div>
+                      </div>
+                      <div class="d-grid grap-2">
+                        <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-database"></i>&nbsp;Registrar</button>
+                      </div>    
+                </form>
+            </div>
+
+        </div>
+        <div class="col lg-6">
+            <div class="card body">
+                <h5 class="titulo">Listado</h5>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let tarjeta of list; let i = index">
+                            <td>{{tarjeta.titulo}} </td>
+                            <td>{{tarjeta.numero}} </td>
+                            <td>{{tarjeta.fecha}} </td>
+                            <td>
+                                <i class="far fa-edit text-info"></i>
+                            </td>
+                            <td>
+                                <i (click)="eliminar(i)" class="far fa-trash-alt text-danger"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
